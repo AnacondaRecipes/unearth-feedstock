@@ -10,6 +10,7 @@ source:
   sha256: 4b7bfbd7d34a11673d80dfae7fabbf921c139aac78383fb0ca16a90d3b53a66e
 
 build:
+  skip: true  # [py<37]
   script: 
     - {{ PYTHON }} -m pdm build -vv
     - {{ PYTHON }} -m pip install dist/unearth-{{ version }}-py3-none-any.whl -vv
