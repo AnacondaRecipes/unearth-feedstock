@@ -33,6 +33,7 @@ requirements:
 test:
   imports:
     - unearth
+#  pytest disabled pending trustme 0.9.0
 #  source_files:
 #    - tests
   commands:
