@@ -25,7 +25,7 @@ requirements:
     - setuptools
     - wheel
   run:
-    - cached-property >=1.5.2
+    - cached-property >=1.5.2  # [py<38]
     - packaging >=20
     - python
     - requests >=2.25
