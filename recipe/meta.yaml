@@ -53,10 +53,8 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  license_url: https://github.com/frostming/unearth/blob/main/LICENSE
   dev_url: https://github.com/frostming/unearth
   doc_url: https://unearth.readthedocs.io/en/latest/
-  doc_source_url: https://github.com/frostming/unearth/tree/main/docs
 
 extra:
   recipe-maintainers:
