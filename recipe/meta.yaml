@@ -1,5 +1,5 @@
 {% set name = "unearth" %}
-{% set version = "0.6.1" %}
+{% set version = "0.6.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,28 +7,27 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/unearth-{{ version }}.tar.gz
-  sha256: 4b7bfbd7d34a11673d80dfae7fabbf921c139aac78383fb0ca16a90d3b53a66e
+  sha256: 130d0c59159795ae66986c1dcbe5d2ddd1da19841972d8d73510d5204b3817ea
 
 build:
-  noarch: python
+  skip: true  # [py<37]
   script: 
-    - {{ PYTHON }} -m pdm build -vv
-    - {{ PYTHON }} -m pip install dist/unearth-{{ version }}-py3-none-any.whl -vv
+    - python -m pip install --no-deps --ignore-installed .
   entry_points:
     - unearth = unearth.__main__:cli
   number: 0
 
 requirements:
   host:
-    - pip <22.2
-    - python >=3.7
-    - pdm
+    - pip
+    - python
     - pdm-pep517
     - setuptools
+    - wheel
   run:
-    - cached-property >=1.5.2
+    - cached-property >=1.5.2  # [py<38]
     - packaging >=20
-    - python >=3.7
+    - python
     - requests >=2.25
 
 test:
@@ -37,11 +36,12 @@ test:
   source_files:
     - tests
   commands:
-    - pytest tests
+    - pip check
+  # Skipping test_session_with_selfsigned_ca because pytest-httpserver is not on defaults
+    - pytest tests -k "not test_session_with_selfsigned_ca"
   requires:
     - pip
     - pytest >=6.1
-    - pytest-httpserver >=1.0.4
     - flask >=2.1.2
     - requests-wsgi-adapter >=0.4.1
     - trustme >=0.9.0
@@ -52,8 +52,10 @@ about:
   home: https://pypi.org/project/unearth/
   summary: A utility to fetch and download python packages
   license: MIT
-  license_file:
-    - LICENSE
+  license_family: MIT
+  license_file: LICENSE
+  dev_url: https://github.com/frostming/unearth
+  doc_url: https://unearth.readthedocs.io/en/latest/
 
 extra:
   recipe-maintainers:
