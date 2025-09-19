@@ -1,5 +1,5 @@
 {% set name = "unearth" %}
-{% set version = "0.6.2" %}
+{% set version = "0.17.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/unearth-{{ version }}.tar.gz
-  sha256: 130d0c59159795ae66986c1dcbe5d2ddd1da19841972d8d73510d5204b3817ea
+  sha256: a19e1c02e64b40518d088079c7416fc41b45a648b81a4128aac02597234ee6ba
 
 build:
-  skip: true  # [py<37]
-  script: 
+  skip: true  # [py<38]
+  script:
     - python -m pip install --no-deps --ignore-installed .
   entry_points:
     - unearth = unearth.__main__:cli
@@ -21,14 +21,13 @@ requirements:
   host:
     - pip
     - python
-    - pdm-pep517
+    - pdm-backend
     - setuptools
     - wheel
   run:
-    - cached-property >=1.5.2  # [py<38]
+    - httpx >=0.27.0,<1
     - packaging >=20
     - python
-    - requests >=2.25
 
 test:
   imports:
@@ -44,9 +43,9 @@ test:
     - pytest >=6.1
     - flask >=2.1.2
     - requests-wsgi-adapter >=0.4.1
-    - trustme >=0.9.0
+    - trustme >=0.9.0  # [py<313]
     - keyring
-    - openssl <3.0.0
+    - pytest-mock >=3.12.0
 
 about:
   home: https://pypi.org/project/unearth/
