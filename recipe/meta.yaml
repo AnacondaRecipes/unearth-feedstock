@@ -37,10 +37,11 @@ test:
   commands:
     - pip check
   # Skipping test_session_with_selfsigned_ca because pytest-httpserver is not on defaults
-    - pytest tests -k "not test_session_with_selfsigned_ca"
+    - pytest tests
   requires:
     - pip
     - pytest >=6.1
+    - pytest-httpserver >=1.0.4
     - flask >=2.1.2
     - requests-wsgi-adapter >=0.4.1
     - trustme >=0.9.0  # [py<313]
