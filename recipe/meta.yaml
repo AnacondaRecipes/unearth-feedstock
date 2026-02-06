@@ -15,7 +15,7 @@ build:
     - python -m pip install --no-deps --no-build-isolation --ignore-installed .
   entry_points:
     - unearth = unearth.__main__:cli
-  number: 0
+  number: 1
 
 requirements:
   host:
