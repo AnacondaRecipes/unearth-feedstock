@@ -1,13 +1,13 @@
 {% set name = "unearth" %}
-{% set version = "0.17.5" %}
+{% set version = "0.18.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/unearth-{{ version }}.tar.gz
-  sha256: a19e1c02e64b40518d088079c7416fc41b45a648b81a4128aac02597234ee6ba
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/unearth-{{ version }}.tar.gz
+  sha256: 1e53d7f52f46dd5f875e77ff1c55b12477e215a092e4b66c9764a77df4a9b520
 
 build:
   skip: true  # [py<38]
@@ -15,7 +15,7 @@ build:
     - python -m pip install --no-deps --no-build-isolation --ignore-installed .
   entry_points:
     - unearth = unearth.__main__:cli
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -34,7 +34,7 @@ test:
     - tests
   commands:
     - pip check
-  # Skipping test_session_with_selfsigned_ca because pytest-httpserver is not on defaults
+    # Skipping test_session_with_selfsigned_ca because pytest-httpserver is not on defaults
     - pytest tests
   requires:
     - pip
