@@ -46,6 +46,7 @@ test:
     - trustme >=0.9.0  # [py<313]
     - keyring
     - pytest-mock >=3.12.0
+    - click
 
 about:
   home: https://pypi.org/project/unearth/
